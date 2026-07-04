@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Calculators — Smit Investments</title>
+<meta name="description" content="SIP & SWP cash-flow calculators by Smit Investments — plan your investments, income withdrawals, and goals." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="mark">
+        <svg viewBox="0 0 120 116" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#c4b5fd"/><stop offset=".5" stop-color="#7c6cf0"/><stop offset="1" stop-color="#4f46e5"/>
+          </linearGradient></defs>
+          <path d="M46 26 H34 a10 10 0 0 0 -10 10 v34 a10 10 0 0 0 10 10 H86 a10 10 0 0 0 10 -10 V36 a10 10 0 0 0 -10 -10 H74"
+                fill="none" stroke="url(#lg)" stroke-width="7" stroke-linecap="round"/>
+          <rect x="40" y="52" width="9" height="20" rx="1.5" fill="#f3efe6"/>
+          <rect x="55.5" y="38" width="9" height="34" rx="1.5" fill="#f3efe6"/>
+          <rect x="71" y="46" width="9" height="26" rx="1.5" fill="#f3efe6"/>
+          <rect x="54" y="80" width="12" height="9" rx="2" fill="url(#lg)"/>
+          <rect x="40" y="90" width="40" height="7" rx="3.5" fill="url(#lg)"/>
+        </svg>
+      </span>
+      <span><b>Smit Investments</b><span>Where your money works for you</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#products">Products</a>
+      <a href="index.html#classes">Asset Classes</a>
+      <a href="index.html#risk">Risk &amp; Return</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a class="btn btn-gold" href="index.html#contact">Book a Consultation</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <span class="eyebrow">Planning Tools</span>
+    <h1>SIP &amp; SWP <span class="gold-text">Calculators</span></h1>
+    <p class="lead">Model your wealth journey — grow a SIP, plan a monthly income (SWP), size the corpus you need, or combine both. Adjust the inputs and results update instantly.</p>
+
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-target="p-sip">SIP Growth</div>
+      <div class="tab" data-target="p-sipneed">SIP for a Goal</div>
+      <div class="tab" data-target="p-swplife">SWP Income Life</div>
+      <div class="tab" data-target="p-swpneed">SWP Corpus Needed</div>
+      <div class="tab" data-target="p-sipswp">SIP → SWP Plan</div>
+      <div class="tab" data-target="p-swpsip">SWP + SIP Plan</div>
+    </div>
+
+    <!-- 1. SIP GROWTH -->
+    <div class="panel active" id="p-sip">
+      <div class="calc-card">
+        <div class="inputs">
+          <h3>SIP Growth</h3>
+          <div class="cap">See how a disciplined monthly SIP compounds into long-term wealth, with an optional annual step-up.</div>
+          <div class="field"><label>Monthly SIP <span class="out" id="sip_amt_o"></span></label><input type="number" id="sip_amt" value="10000" min="500" step="500"></div>
+          <div class="field"><label>Expected Return (p.a.) <span class="out" id="sip_ret_o"></span></label><input type="range" id="sip_ret" value="12" min="1" max="20" step="0.5"></div>
+          <div class="field"><label>Investment Period <span class="out" id="sip_yrs_o"></span></label><input type="range" id="sip_yrs" value="20" min="1" max="40" step="1"></div>
+          <div class="field-row">
+            <div class="field"><label>Annual Step-up</label><select id="sip_stype"><option value="none">None</option><option value="pct">% yearly</option><option value="yearly">₹ yearly</option><option value="half">₹ half-yearly</option></select></div>
+            <div class="field"><label>Step Value <span class="out" id="sip_step_o"></span></label><input type="number" id="sip_step" value="10" min="0" step="1"></div>
+          </div>
+        </div>
+        <div class="results">
+          <div class="res-head">Projected Outcome</div>
+          <div class="res-hero"><div class="lbl">Maturity Value</div><div class="big" id="sip_mat">—</div></div>
+          <div class="mini-bars"><div class="mb"><div class="bar inv" id="sip_bar_inv"></div><small>Invested</small></div><div class="mb"><div class="bar gain" id="sip_bar_mat"></div><small>Maturity</small></div></div>
+          <div class="res-list">
+            <div class="r"><span class="k">Total Invested</span><span class="v" id="sip_inv">—</span></div>
+            <div class="r"><span class="k">Wealth Gained</span><span class="v pos" id="sip_gain">—</span></div>
+            <div class="r"><span class="k">Investment Multiple</span><span class="v" id="sip_mult">—</span></div>
+          </div>
+          <div class="calc-note">Returns compounded monthly at an effective annual rate; SIP invested at the start of each month. Indicative only.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SIP FOR A GOAL -->
+    <div class="panel" id="p-sipneed">
+      <div class="calc-card">
+        <div class="inputs">
+          <h3>SIP for a Goal</h3>
+          <div class="cap">Have a target corpus in mind? Find the monthly SIP required to reach it within your horizon.</div>
+          <div class="field"><label>Target Amount <span class="out" id="sn_tgt_o"></span></label><input type="number" id="sn_tgt" value="5000000" min="10000" step="50000"></div>
+          <div class="field"><label>Expected Return (p.a.) <span class="out" id="sn_ret_o"></span></label><input type="range" id="sn_ret" value="12" min="1" max="20" step="0.5"></div>
+          <div class="field"><label>Investment Horizon <span class="out" id="sn_yrs_o"></span></label><input type="range" id="sn_yrs" value="10" min="1" max="40" step="1"></div>
+          <div class="field-row">
+            <div class="field"><label>Annual Step-up</label><select id="sn_stype"><option value="none">None</option><option value="pct">% yearly</option><option value="yearly">₹ yearly</option><option value="half">₹ half-yearly</option></select></div>
+            <div class="field"><label>Step Value <span class="out" id="sn_step_o"></span></label><input type="number" id="sn_step" value="10" min="0" step="1"></div>
+          </div>
+        </div>
+        <div class="results">
+          <div class="res-head">What You Need</div>
+          <div class="res-hero"><div class="lbl">Monthly SIP Required (at start)</div><div class="big" id="sn_sip">—</div></div>
+          <div class="res-list">
+            <div class="r"><span class="k">Target Amount</span><span class="v" id="sn_tgt2">—</span></div>
+            <div class="r"><span class="k">Total Amount Invested</span><span class="v" id="sn_inv">—</span></div>
+            <div class="r"><span class="k">Wealth Gained</span><span class="v pos" id="sn_gain">—</span></div>
+            <div class="r"><span class="k">Investment Multiple</span><span class="v" id="sn_mult">—</span></div>
+          </div>
+          <div class="calc-note">If a step-up is chosen, the required starting SIP is lower as contributions rise over time. Indicative only.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. SWP INCOME LIFE -->
+    <div class="panel" id="p-swplife">
+      <div class="calc-card">
+        <div class="inputs">
+          <h3>SWP Income Life</h3>
+          <div class="cap">Withdrawing a fixed monthly income from a corpus? See how long it will last at your expected return.</div>
+          <div class="field"><label>Investment Corpus Today <span class="out" id="sl_corp_o"></span></label><input type="number" id="sl_corp" value="5000000" min="100000" step="100000"></div>
+          <div class="field"><label>Monthly Withdrawal (SWP) <span class="out" id="sl_wd_o"></span></label><input type="number" id="sl_wd" value="40000" min="1000" step="1000"></div>
+          <div class="field"><label>Expected Return (p.a.) <span class="out" id="sl_ret_o"></span></label><input type="range" id="sl_ret" value="8" min="1" max="18" step="0.5"></div>
+        </div>
+        <div class="results">
+          <div class="res-head">How Long It Lasts</div>
+          <div class="res-hero"><div class="lbl">Your income would last for</div><div class="big" id="sl_life">—</div></div>
+          <div class="res-list">
+            <div class="r"><span class="k">Monthly Income</span><span class="v" id="sl_wd2">—</span></div>
+            <div class="r"><span class="k">Number of Withdrawals</span><span class="v" id="sl_cnt">—</span></div>
+            <div class="r"><span class="k">Total Amount Withdrawn</span><span class="v pos" id="sl_tot">—</span></div>
+          </div>
+          <div class="calc-note" id="sl_note">Withdrawals start next month; corpus grows at the effective monthly rate between withdrawals. Indicative only.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. SWP CORPUS NEEDED -->
+    <div class="panel" id="p-swpneed">
+      <div class="calc-card">
+        <div class="inputs">
+          <h3>SWP Corpus Needed</h3>
+          <div class="cap">Know the monthly income you want and for how long? Find the corpus (SWP kitty) you need to build.</div>
+          <div class="field"><label>Monthly Income Required <span class="out" id="swn_wd_o"></span></label><input type="number" id="swn_wd" value="50000" min="1000" step="1000"></div>
+          <div class="field"><label>Income Duration <span class="out" id="swn_yrs_o"></span></label><input type="range" id="swn_yrs" value="15" min="1" max="40" step="1"></div>
+          <div class="field"><label>Return on Corpus (p.a.) <span class="out" id="swn_ret_o"></span></label><input type="range" id="swn_ret" value="12" min="1" max="18" step="0.5"></div>
+          <div class="field"><label>Annual Income Growth / Inflation <span class="out" id="swn_inf_o"></span></label><input type="range" id="swn_inf" value="0" min="0" max="12" step="0.5"></div>
+        </div>
+        <div class="results">
+          <div class="res-head">Corpus To Build</div>
+          <div class="res-hero"><div class="lbl">SWP Corpus Needed Today</div><div class="big" id="swn_kitty">—</div></div>
+          <div class="res-list">
+            <div class="r"><span class="k">Starting Monthly Income</span><span class="v" id="swn_wd2">—</span></div>
+            <div class="r"><span class="k">Income Duration</span><span class="v" id="swn_dur">—</span></div>
+            <div class="r"><span class="k">Total Income Drawn</span><span class="v pos" id="swn_tot">—</span></div>
+          </div>
+          <div class="calc-note">Income assumed at the start of each month, growing yearly by the inflation rate. Indicative only.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SIP -> SWP -->
+    <div class="panel" id="p-sipswp">
+      <div class="calc-card">
+        <div class="inputs">
+          <h3>SIP → SWP Plan</h3>
+          <div class="cap">Build wealth with a SIP, then draw a monthly income from it. See the corpus created and how long the income lasts.</div>
+          <div class="field"><label>Monthly SIP <span class="out" id="ss_sip_o"></span></label><input type="number" id="ss_sip" value="15000" min="500" step="500"></div>
+          <div class="field-row">
+            <div class="field"><label>SIP Return (p.a.) <span class="out" id="ss_sret_o"></span></label><input type="range" id="ss_sret" value="12" min="1" max="20" step="0.5"></div>
+            <div class="field"><label>SIP Period <span class="out" id="ss_syrs_o"></span></label><input type="range" id="ss_syrs" value="20" min="1" max="40" step="1"></div>
+          </div>
+          <div class="field"><label>Then — Monthly Withdrawal (SWP) <span class="out" id="ss_wd_o"></span></label><input type="number" id="ss_wd" value="50000" min="1000" step="1000"></div>
+          <div class="field"><label>Return During Withdrawal (p.a.) <span class="out" id="ss_wret_o"></span></label><input type="range" id="ss_wret" value="8" min="1" max="18" step="0.5"></div>
+        </div>
+        <div class="results">
+          <div class="res-head">Accumulate → Withdraw</div>
+          <div class="res-hero"><div class="lbl">SWP Corpus Built</div><div class="big" id="ss_kitty">—</div></div>
+          <div class="res-list">
+            <div class="r"><span class="k">Total Invested via SIP</span><span class="v" id="ss_inv">—</span></div>
+            <div class="r"><span class="k">Monthly Income Drawn</span><span class="v" id="ss_wd2">—</span></div>
+            <div class="r"><span class="k">Income Would Last</span><span class="v pos" id="ss_life">—</span></div>
+          </div>
+          <div class="calc-note">A two-stage plan: SIP accumulation followed by SWP drawdown on the built corpus. Indicative only.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. SWP + SIP -->
+    <div class="panel" id="p-swpsip">
+      <div class="calc-card">
+        <div class="inputs">
+          <h3>SWP + SIP Plan</h3>
+          <div class="cap">Plan a future monthly income and find the SIP needed today to fund the required corpus.</div>
+          <div class="field"><label>Monthly Income Required <span class="out" id="sp_wd_o"></span></label><input type="number" id="sp_wd" value="30000" min="1000" step="1000"></div>
+          <div class="field-row">
+            <div class="field"><label>Income Starts After <span class="out" id="sp_start_o"></span></label><input type="range" id="sp_start" value="5" min="1" max="30" step="1"></div>
+            <div class="field"><label>Income Duration <span class="out" id="sp_dur_o"></span></label><input type="range" id="sp_dur" value="15" min="1" max="40" step="1"></div>
+          </div>
+          <div class="field"><label>Expected Return (p.a.) <span class="out" id="sp_ret_o"></span></label><input type="range" id="sp_ret" value="12" min="1" max="18" step="0.5"></div>
+          <div class="field"><label>Annual Income Growth / Inflation <span class="out" id="sp_inf_o"></span></label><input type="range" id="sp_inf" value="0" min="0" max="12" step="0.5"></div>
+        </div>
+        <div class="results">
+          <div class="res-head">Income Goal → Fund It</div>
+          <div class="res-hero"><div class="lbl">Monthly SIP Required (at start)</div><div class="big" id="sp_sip">—</div></div>
+          <div class="res-list">
+            <div class="r"><span class="k">SWP Corpus Needed</span><span class="v" id="sp_kitty">—</span></div>
+            <div class="r"><span class="k">Starting Monthly Income</span><span class="v" id="sp_first">—</span></div>
+            <div class="r"><span class="k">Total Invested via SIP</span><span class="v" id="sp_inv">—</span></div>
+            <div class="r"><span class="k">Income Duration</span><span class="v pos" id="sp_dur2">—</span></div>
+          </div>
+          <div class="calc-note">Stage 1 sizes the corpus for your income need; Stage 2 finds the SIP over the accumulation years to reach it. Indicative only.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cross-cta">
+      <p class="lead" style="font-size:15px;margin-bottom:20px">Want a plan built around your specific goals, taxes and risk profile?</p>
+      <a class="btn btn-gold" href="index.html#contact">Book a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" style="pointer-events:auto">
+          <span class="mark">
+            <svg viewBox="0 0 120 116" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="lgf" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#c4b5fd"/><stop offset=".5" stop-color="#7c6cf0"/><stop offset="1" stop-color="#4f46e5"/>
+              </linearGradient></defs>
+              <path d="M46 26 H34 a10 10 0 0 0 -10 10 v34 a10 10 0 0 0 10 10 H86 a10 10 0 0 0 10 -10 V36 a10 10 0 0 0 -10 -10 H74"
+                    fill="none" stroke="url(#lgf)" stroke-width="7" stroke-linecap="round"/>
+              <rect x="40" y="52" width="9" height="20" rx="1.5" fill="#f3efe6"/>
+              <rect x="55.5" y="38" width="9" height="34" rx="1.5" fill="#f3efe6"/>
+              <rect x="71" y="46" width="9" height="26" rx="1.5" fill="#f3efe6"/>
+              <rect x="54" y="80" width="12" height="9" rx="2" fill="url(#lgf)"/>
+              <rect x="40" y="90" width="40" height="7" rx="3.5" fill="url(#lgf)"/>
+            </svg>
+          </span>
+          <span><b>Smit Investments</b><span>Where your money works for you</span></span>
+        </a>
+        <p>Authorised Mutual Fund &amp; SIF Distributor. Guiding investors toward goal-based, diversified wealth creation.</p>
+        <div class="cred"><span>ARN-284696</span><span>CFGP Certified</span><span>MF &amp; SIF Distributor</span></div>
+      </div>
+      <div>
+        <div class="cls-label" style="color:var(--gold);letter-spacing:.2em;margin-bottom:14px">Get in Touch</div>
+        <a class="contact-pill" style="margin-bottom:10px" href="tel:+919898003842"><span class="k serif">☏</span> +91 98980 03842</a><br>
+        <a class="contact-pill" style="margin-bottom:10px" href="mailto:investmentwithsmit@gmail.com"><span class="k serif">✉</span> investmentwithsmit@gmail.com</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <b>Disclaimer:</b> The calculators on this page are for illustration and planning purposes only and do not constitute investment advice or a guarantee of returns. All figures are indicative and assume a constant rate of return; actual mutual-fund and market-linked returns fluctuate and are subject to market risks. Please read all scheme-related documents carefully and consult before investing.
+    </div>
+    <div class="copy">© 2026 Smit Investments. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* ===== core financial engine (matched to the SIP/SWP cash-flow model) ===== */
+const mrate = a => Math.pow(1+a, 1/12) - 1;
+
+function sipFV(P, annual, years, stype, step){
+  const r=mrate(annual); let bal=0, sip=P, invested=0;
+  const n=Math.round(years*12);
+  for(let m=0;m<n;m++){
+    if(m>0){
+      if(stype==='pct' && m%12===0) sip*=(1+step);
+      else if(stype==='yearly' && m%12===0) sip+=step;
+      else if(stype==='half' && m%6===0) sip+=step;
+    }
+    bal=(bal+sip)*(1+r); invested+=sip;
+  }
+  return {maturity:bal, invested};
+}
+function sipNeeded(target, annual, years, stype, step){
+  let lo=0, hi=Math.max(target,1);
+  // ensure hi is large enough
+  while(sipFV(hi,annual,years,stype,step).maturity < target) hi*=2;
+  for(let i=0;i<100;i++){ const mid=(lo+hi)/2; if(sipFV(mid,annual,years,stype,step).maturity<target) lo=mid; else hi=mid; }
+  const P=(lo+hi)/2; return {sip:P, ...sipFV(P,annual,years,stype,step)};
+}
+function swpNeed(W, years, annual, infl){
+  const r=mrate(annual); const n=Math.round(years*12); let pv=0, w=W, totalWD=0;
+  for(let m=0;m<n;m++){ if(m>0 && m%12===0) w*=(1+infl); pv += w/Math.pow(1+r,m); totalWD+=w; }
+  return {pv, totalWD};
+}
+function swpLife(C, W, annual){
+  const r=mrate(annual); let bal=C, count=0, total=0; const cap=1200; let sustaining=false;
+  for(let m=1;m<=cap;m++){
+    bal=bal*(1+r);
+    if(bal>=W){ bal-=W; count++; total+=W; }
+    else { total+=bal; count++; bal=0; break; }
+    if(m===cap) sustaining=true;
+  }
+  return {months:count, total, sustaining};
+}
+
+/* ===== formatting ===== */
+const nf=new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
+const rupee=n=>'₹'+nf.format(Math.round(n));
+function compact(n){n=Math.round(n);const a=Math.abs(n);
+  if(a>=1e7) return '₹'+(n/1e7).toFixed(2)+' Cr';
+  if(a>=1e5) return '₹'+(n/1e5).toFixed(2)+' L';
+  return '₹'+nf.format(n);}
+function dur(months){const y=Math.floor(months/12),m=months%12;
+  let s=[]; if(y) s.push(y+' yr'+(y>1?'s':'')); if(m) s.push(m+' mo'); return s.join(' ')||'0 mo';}
+
+const $=id=>document.getElementById(id);
+const num=id=>parseFloat($(id).value)||0;
+const set=(id,v)=>{const e=$(id); if(e) e.textContent=v;};
+function stepOut(stype,val){ return stype==='none'?'—': stype==='pct'? val+'%' : rupee(val); }
+function stepVal(stype,val){ return stype==='pct'? val/100 : val; }
+
+/* ===== renders ===== */
+function renderSip(){
+  const P=num('sip_amt'),ret=num('sip_ret')/100,yrs=num('sip_yrs');
+  const st=$('sip_stype').value, sv=num('sip_step'), step=stepVal(st,sv);
+  set('sip_amt_o',rupee(P)); set('sip_ret_o',num('sip_ret')+'%'); set('sip_yrs_o',yrs+' yrs'); set('sip_step_o',stepOut(st,sv));
+  const {maturity,invested}=sipFV(P,ret,yrs,st,step);
+  set('sip_mat',compact(maturity)); set('sip_inv',rupee(invested));
+  set('sip_gain',rupee(maturity-invested)); set('sip_mult',(maturity/invested).toFixed(2)+'x');
+  $('sip_bar_inv').style.height=Math.max(4,invested/maturity*100)+'%';
+  $('sip_bar_mat').style.height='100%';
+}
+function renderSipNeed(){
+  const tgt=num('sn_tgt'),ret=num('sn_ret')/100,yrs=num('sn_yrs');
+  const st=$('sn_stype').value, sv=num('sn_step'), step=stepVal(st,sv);
+  set('sn_tgt_o',compact(tgt)); set('sn_ret_o',num('sn_ret')+'%'); set('sn_yrs_o',yrs+' yrs'); set('sn_step_o',stepOut(st,sv));
+  const {sip,invested}=sipNeeded(tgt,ret,yrs,st,step);
+  set('sn_sip',rupee(sip)); set('sn_tgt2',compact(tgt)); set('sn_inv',rupee(invested));
+  set('sn_gain',rupee(tgt-invested)); set('sn_mult',(tgt/invested).toFixed(2)+'x');
+}
+function renderSwpLife(){
+  const C=num('sl_corp'),W=num('sl_wd'),ret=num('sl_ret')/100;
+  set('sl_corp_o',compact(C)); set('sl_wd_o',rupee(W)); set('sl_ret_o',num('sl_ret')+'%');
+  const {months,total,sustaining}=swpLife(C,W,ret);
+  if(sustaining){
+    set('sl_life','Self-sustaining');
+    set('sl_cnt','Ongoing (100+ yrs)');
+    set('sl_tot','—');
+    set('sl_note','At this return, monthly growth exceeds the withdrawal — the corpus is self-sustaining and keeps growing. Try a higher withdrawal or lower return to see a finite life.');
+  }else{
+    set('sl_life',dur(months));
+    set('sl_cnt',months+' withdrawals');
+    set('sl_tot',compact(total));
+    set('sl_note','Withdrawals start next month; corpus grows at the effective monthly rate between withdrawals. Indicative only.');
+  }
+  set('sl_wd2',rupee(W));
+}
+function renderSwpNeed(){
+  const W=num('swn_wd'),yrs=num('swn_yrs'),ret=num('swn_ret')/100,inf=num('swn_inf')/100;
+  set('swn_wd_o',rupee(W)); set('swn_yrs_o',yrs+' yrs'); set('swn_ret_o',num('swn_ret')+'%'); set('swn_inf_o',num('swn_inf')+'%');
+  const {pv,totalWD}=swpNeed(W,yrs,ret,inf);
+  set('swn_kitty',compact(pv)); set('swn_wd2',rupee(W)); set('swn_dur',yrs+' yrs'); set('swn_tot',compact(totalWD));
+}
+function renderSipSwp(){
+  const P=num('ss_sip'),sret=num('ss_sret')/100,syrs=num('ss_syrs');
+  const W=num('ss_wd'),wret=num('ss_wret')/100;
+  set('ss_sip_o',rupee(P)); set('ss_sret_o',num('ss_sret')+'%'); set('ss_syrs_o',syrs+' yrs');
+  set('ss_wd_o',rupee(W)); set('ss_wret_o',num('ss_wret')+'%');
+  const {maturity,invested}=sipFV(P,sret,syrs,'none',0);
+  const {months,sustaining}=swpLife(maturity,W,wret);
+  set('ss_kitty',compact(maturity)); set('ss_inv',compact(invested)); set('ss_wd2',rupee(W));
+  set('ss_life', sustaining?'Self-sustaining':dur(months));
+}
+function renderSwpSip(){
+  const W=num('sp_wd'),start=num('sp_start'),d=num('sp_dur'),ret=num('sp_ret')/100,inf=num('sp_inf')/100;
+  set('sp_wd_o',rupee(W)); set('sp_start_o',start+' yrs'); set('sp_dur_o',d+' yrs'); set('sp_ret_o',num('sp_ret')+'%'); set('sp_inf_o',num('sp_inf')+'%');
+  const {pv}=swpNeed(W,d,ret,inf);
+  const {sip,invested}=sipNeeded(pv,ret,start,'none',0);
+  set('sp_sip',rupee(sip)); set('sp_kitty',compact(pv)); set('sp_first',rupee(W));
+  set('sp_inv',compact(invested)); set('sp_dur2',d+' yrs');
+}
+function renderAll(){renderSip();renderSipNeed();renderSwpLife();renderSwpNeed();renderSipSwp();renderSwpSip();}
+
+/* ===== tabs ===== */
+function initTabs(){
+  const tabs=[...document.querySelectorAll('.tab')];
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    t.classList.add('active');
+    $(t.dataset.target).classList.add('active');
+  }));
+}
+document.addEventListener('input',renderAll);
+document.addEventListener('change',renderAll);
+window.addEventListener('DOMContentLoaded',()=>{ initTabs(); renderAll(); });
+</script>
+</body>
+</html>
