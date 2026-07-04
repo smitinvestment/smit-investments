@@ -305,3 +305,20 @@
 .mini-bars .mb .bar.gain{background:var(--grad-gold)}
 .mini-bars .mb small{font-size:10px;color:var(--txt-mute);letter-spacing:.04em}
 .cross-cta{text-align:center;margin:60px auto 0;max-width:560px}
+
+/* ============ WHATSAPP FLOATING BUTTON ============ */
+.wa-float{position:fixed;right:22px;bottom:24px;z-index:120;display:flex;align-items:center;gap:0;
+  text-decoration:none;height:60px;padding:0;border-radius:34px;overflow:hidden;
+  background:linear-gradient(145deg,#25d366,#128c4b);color:#fff;
+  box-shadow:0 14px 34px -10px rgba(18,140,75,0.7),0 0 0 1px rgba(255,255,255,0.08) inset;
+  transition:all .35s cubic-bezier(.2,.8,.2,1);max-width:60px}
+.wa-float:hover{max-width:260px;box-shadow:0 20px 46px -12px rgba(18,140,75,0.85)}
+.wa-float .ico{flex:0 0 60px;width:60px;height:60px;display:grid;place-items:center}
+.wa-float .ico svg{width:30px;height:30px}
+.wa-float .lbl{white-space:nowrap;font-family:'Jost',sans-serif;font-size:14px;letter-spacing:.02em;
+  padding-right:24px;opacity:0;transform:translateX(-6px);transition:.35s .05s}
+.wa-float:hover .lbl{opacity:1;transform:none}
+.wa-float::after{content:"";position:absolute;left:6px;top:6px;width:48px;height:48px;border-radius:50%;
+  border:2px solid #25d366;opacity:.65;animation:wa-pulse 2.4s ease-out infinite;pointer-events:none}
+@keyframes wa-pulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.7);opacity:0}100%{opacity:0}}
+@media(max-width:520px){.wa-float{right:16px;bottom:18px}.wa-float:hover{max-width:60px}.wa-float .lbl{display:none}}
