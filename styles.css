@@ -126,8 +126,8 @@
   .card::before{content:"";position:absolute;inset:0;padding:1px;border-radius:var(--radius);
     background:linear-gradient(160deg,rgba(207,148,80,0.55),transparent 42%);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.4s}
-  .card::after{content:"";position:absolute;top:-40%;right:-30%;width:220px;height:220px;
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;pointer-events:none;transition:.4s}
+  .card::after{content:"";position:absolute;top:-40%;right:-30%;width:220px;height:220px;pointer-events:none;
     background:radial-gradient(circle,rgba(207,148,80,0.16),transparent 65%);opacity:0;transition:.5s}
   .card:hover{transform:translateY(-7px);border-color:var(--line)}
   .card:hover::before{opacity:1}
@@ -355,3 +355,33 @@
   .gpp-flow{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 46px;flex-wrap:wrap;color:var(--txt-mute);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
   .gpp-flow b{color:var(--gold-2);font-weight:400}
   .gpp-flow span{color:var(--gold);font-size:15px}
+
+/* ============ NIFTY STRUCTURED PRODUCTS ============ */
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:1000px){.sp-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.sp-grid{grid-template-columns:1fr}}
+.sp-card{position:relative;border-radius:16px;padding:24px 22px;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line-soft);transition:.35s cubic-bezier(.2,.7,.2,1)}
+.sp-card:hover{transform:translateY(-6px);border-color:var(--line)}
+.sp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:7px}
+.sp-name{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;line-height:1.1}
+.sp-badge{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:4px}
+.sp-badge.pp{color:#53d0a6;border:1px solid rgba(83,208,166,.35);background:rgba(83,208,166,.08)}
+.sp-badge.npp{color:var(--txt-mute);border:1px solid var(--line-soft)}
+.sp-sub{font-size:11px;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.sp-terms{display:flex;flex-direction:column;gap:13px;margin-bottom:22px;flex-grow:1}
+.sp-terms .t{display:flex;flex-direction:column;gap:3px}
+.sp-terms .t span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-mute)}
+.sp-terms .t b{font-size:13.5px;color:var(--txt);font-weight:500}
+.sp-dl{justify-content:center;width:100%;font-size:12.5px;padding:11px 14px}
+.sp-note{text-align:center;font-size:11.5px;color:var(--txt-mute);max-width:780px;margin:32px auto 0;line-height:1.65}
+/* home teaser */
+.sp-teaser{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;border-radius:20px;padding:34px 38px;
+  background:radial-gradient(540px 230px at 85% 0,rgba(207,148,80,0.12),transparent 60%),linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line)}
+.sp-teaser h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;margin:12px 0 8px;line-height:1.1}
+.sp-teaser p{color:var(--txt-dim);font-size:14.5px;max-width:540px}
+@media(max-width:640px){.sp-teaser{padding:28px 24px}}
+/* inline link inside a product card */
+.card-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;align-self:flex-start;color:var(--gold-2);
+  font-size:13px;letter-spacing:.03em;text-decoration:none;border-bottom:1px solid rgba(207,148,80,0.3);padding-bottom:2px;transition:.25s}
+.card-link:hover{color:var(--gold-3);border-color:var(--gold)}

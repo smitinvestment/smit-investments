@@ -4,3 +4,6 @@
 *.xlsm
 Thumbs.db
 .DS_Store
+
+# raw source archive (only the extracted PDFs in products/ are published)
+b2brevisedniftyonepagers.zip
