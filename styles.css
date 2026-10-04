@@ -323,3 +323,35 @@
   border:2px solid #25d366;opacity:.65;animation:wa-pulse 2.4s ease-out infinite;pointer-events:none}
 @keyframes wa-pulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.7);opacity:0}100%{opacity:0}}
 @media(max-width:520px){.wa-float{right:16px;bottom:18px}.wa-float:hover{max-width:60px}.wa-float .lbl{display:none}}
+
+
+/* ============ GROW / PROTECT / PRESERVE ============ */
+.gpp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:880px){.gpp-grid{grid-template-columns:1fr}}
+  .gpp-card{position:relative;border-radius:18px;padding:32px 28px;overflow:hidden;
+    background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line-soft);
+    transition:.4s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+  .gpp-card::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;
+    background:linear-gradient(160deg,rgba(207,148,80,0.55),transparent 45%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.4s}
+  .gpp-card:hover{transform:translateY(-7px);border-color:var(--line)}
+  .gpp-card:hover::before{opacity:1}
+  .gpp-ic{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;font-size:28px;
+    background:rgba(207,148,80,0.1);border:1px solid var(--line);margin-bottom:20px}
+  .gpp-card h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;line-height:1}
+  .gpp-card h3 em{display:block;font-style:normal;font-family:'Jost';font-size:11px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--gold);margin-top:8px}
+  .gpp-rows{margin:22px 0 20px;display:flex;flex-direction:column;gap:15px;flex-grow:1}
+  .gpp-rows .r .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-mute);display:block;margin-bottom:4px}
+  .gpp-rows .r .v{font-size:13.5px;color:var(--txt-dim);line-height:1.5}
+  .gpp-risk{display:flex;align-items:center;gap:12px}
+  .gpp-risk .v{color:var(--gold-2);font-size:13px;font-weight:400}
+  .gpp-meter{display:flex;gap:4px}
+  .gpp-meter i{width:20px;height:5px;border-radius:3px;background:rgba(255,255,255,0.1)}
+  .gpp-meter i.on{background:var(--grad-gold)}
+  .gpp-tools{border-top:1px solid var(--line-soft);padding-top:18px;margin-top:auto}
+  .gpp-tools .label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-mute);display:block;margin-bottom:11px}
+  .gpp-flow{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 46px;flex-wrap:wrap;color:var(--txt-mute);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .gpp-flow b{color:var(--gold-2);font-weight:400}
+  .gpp-flow span{color:var(--gold);font-size:15px}
